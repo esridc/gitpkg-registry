@@ -1,0 +1,1 @@
+export declare const HEALTH_CHECK_OPTIONS = "HEALTH_CHECK_OPTIONS";
