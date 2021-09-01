@@ -1,0 +1,71 @@
+{
+  "version": "0.3.2-alpha.1",
+  "private": true,
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "prepare": "is-ci || husky install",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "build:doc": "typedoc src/index.ts",
+    "test": "tsdx test",
+    "lint": "tsdx lint src",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "preversion": "npm test && npm run build",
+    "postversion": "gitpkg publish && git push origin --all; git push origin --tags",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": "tsdx lint --fix"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "hub-logger",
+  "author": "Haoliang Yu",
+  "module": "dist/hub-logger.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/hub-logger.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/hub-logger.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.12.0",
+    "@types/node": "^15.14.9",
+    "gitpkg": "1.0.0-beta.2",
+    "husky": "^7.0.2",
+    "is-ci": "^3.0.0",
+    "lint-staged": "^11.1.2",
+    "mockdate": "^3.0.5",
+    "size-limit": "^4.12.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typedoc": "^0.20.37",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "winston": "^3.3.3"
+  },
+  "gitpkg": {
+    "registry": "git@github.com:esridc/gitpkg-registry.git"
+  },
+  "volta": {
+    "node": "14.17.1",
+    "npm": "6.14.13"
+  }
+}
