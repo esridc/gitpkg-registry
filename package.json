@@ -1,0 +1,78 @@
+{
+  "version": "2.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "test:e2e": "tsdx test --testPathPattern=test/e2e",
+    "lint": "tsdx lint",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "preversion": "npm test && npm run build",
+    "postversion": "gitpkg publish && git push origin --all; git push origin --tags"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "nestjs-hub-health-check",
+  "author": "Haoliang Yu",
+  "module": "dist/nestjs-hub-health-check.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/nestjs-hub-health-check.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/nestjs-hub-health-check.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@nestjs/cli": "^9.3.0",
+    "@nestjs/common": "^9.3.12",
+    "@nestjs/core": "^9.3.12",
+    "@nestjs/platform-express": "^9.3.12",
+    "@nestjs/swagger": "^6.3.0",
+    "@nestjs/testing": "^9.3.12",
+    "@size-limit/preset-small-lib": "^4.11.0",
+    "@types/supertest": "^2.0.11",
+    "gitpkg": "1.0.0-beta.2",
+    "husky": "^6.0.0",
+    "reflect-metadata": "^0.1.13",
+    "size-limit": "^4.11.0",
+    "supertest": "^6.1.3",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/swagger": "^6.0.0",
+    "@nestjs/terminus": "^9.0.0"
+  },
+  "volta": {
+    "node": "16.18.0",
+    "npm": "8.19.2"
+  },
+  "gitpkg": {
+    "registry": "git@github.com:esridc/gitpkg-registry.git"
+  }
+}
